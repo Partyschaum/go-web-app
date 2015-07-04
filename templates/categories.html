@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  {{template "_head.html" .Title}}
+  <body>
+    {{template "_header.html" .Active}}
+    <h1>categories</h1>
+
+    <div class="columns small-10 small-offset-1">
+    {{range .Categories}}
+      {{template "_category" .}}
+    {{end}}
+    </div>
+
+    {{template "_footer.html"}}
+  </body>
+</html>
