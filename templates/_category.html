@@ -1,19 +1,19 @@
 <div class="category {{if eq .IsOrientRight true}}orient-right{{else}}orient-left{{end}}">
-  <a href="/products">
-    {{if eq .IsOrientRight false}}
-      <div class=""
-        <img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />
-      </div>
-    {{end}}
-    <div class="">
-      <h2>{{.Title}}</h2>
-      <p>{{.Description}}</p>
-    </div>
-    {{if eq .IsOrientRight true}}
-      <div class=""
-        <img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />
-      </div>
-    {{end}}
-  </a>
+<a href="/products">
+  {{if eq .IsOrientRight false}}
+  <div class="">
+    <img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />
+  </div>
+  {{end}}
+  <div class="">
+    <h2>{{.Title}}</h2>
+    <p>{{.Description}}</p>
+  </div>
+  {{if eq .IsOrientRight true}}
+  <div class="">
+    <img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />
+  </div>
+  {{end}}
+</a>
 </div>
 

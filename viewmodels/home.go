@@ -1,13 +1,14 @@
 package viewmodels
 
 type Home struct {
-	Title  string
-	Active string
+	Base
 }
 
 func GetHome() Home {
 	return Home{
-		Title:  "Lemonade Stand Society",
-		Active: "home",
+		Base: Base{
+			Title:  "Lemonade Stand Society",
+			Active: "home",
+		},
 	}
 }

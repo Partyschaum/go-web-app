@@ -1,8 +1,7 @@
 package viewmodels
 
 type Categories struct {
-	Title      string
-	Active     string
+	Base
 	Categories []Category
 }
 
@@ -15,8 +14,10 @@ type Category struct {
 
 func GetCategories() Categories {
 	categories := Categories{
-		Title:  "Lemonade Stand Society - Shop",
-		Active: "shop",
+		Base: Base{
+			Title:  "Lemonade Stand Society - Shop",
+			Active: "shop",
+		},
 	}
 
 	juiceCategory := Category{

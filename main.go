@@ -1,78 +1,21 @@
 package main
 
 import (
-	"bufio"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"strings"
-	"text/template"
 
-	"github.com/partyschaum/go-web-app/viewmodels"
+	"github.com/partyschaum/go-web-app/controllers"
 )
 
 func main() {
 	templates := populateTemplates()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		requestedFile := req.URL.Path[1:]
-		template := templates.Lookup(requestedFile + ".html")
-
-		log.Printf("Requesting '%s'", requestedFile)
-
-		var context interface{} = nil
-
-		switch requestedFile {
-		case "home":
-			context = viewmodels.GetHome()
-		case "categories":
-			context = viewmodels.GetCategories()
-		}
-
-		if template != nil {
-			template.Execute(w, context)
-		} else {
-			w.WriteHeader(http.StatusNotFound)
-			w.Write([]byte(http.StatusText(http.StatusNotFound)))
-		}
-	})
-
-	http.HandleFunc("/img/", serveResource)
-	http.HandleFunc("/css/", serveResource)
+	controllers.Register(templates)
 
 	http.ListenAndServe(":8000", nil)
-}
-
-func serveResource(w http.ResponseWriter, req *http.Request) {
-	path := "public" + req.URL.Path
-
-	var contentType string
-	if strings.HasSuffix(path, ".css") {
-		contentType = "text/css"
-	} else if strings.HasSuffix(path, ".png") {
-		contentType = "image/png"
-	} else if strings.HasSuffix(path, ".js") {
-		contentType = "application/javascript"
-	} else {
-		contentType = "text/plain"
-	}
-
-	f, err := os.Open(path)
-
-	if err == nil {
-		log.Printf("Serving asset: %s", path)
-
-		defer f.Close()
-		w.Header().Add("Content Type", contentType)
-
-		br := bufio.NewReader(f)
-		br.WriteTo(w)
-	} else {
-		log.Printf("Missing asset: %s", path)
-
-		w.WriteHeader(http.StatusNotFound)
-		w.Write([]byte(http.StatusText(http.StatusNotFound)))
-	}
 }
 
 func populateTemplates() *template.Template {

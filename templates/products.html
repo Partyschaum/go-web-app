@@ -4,7 +4,13 @@
   <body>
     {{template "_header.html" .Active}}
     <h1>products</h1>
-    <img src="/img/zitrone.png">
+
+    <div class="columns">
+    {{range .Products}}
+      {{template "_product.html" .}}
+    {{end}}
+    </div>
+
     {{template "_footer.html"}}
   </body>
 </html>
