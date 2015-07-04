@@ -1,4 +1,4 @@
-package viewmodel
+package viewmodels
 
 type Categories struct {
 	Title      string

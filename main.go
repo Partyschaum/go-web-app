@@ -46,8 +46,6 @@ func main() {
 func serveResource(w http.ResponseWriter, req *http.Request) {
 	path := "public" + req.URL.Path
 
-	log.Printf("Serving asset: %s", path)
-
 	var contentType string
 	if strings.HasSuffix(path, ".css") {
 		contentType = "text/css"
@@ -62,12 +60,16 @@ func serveResource(w http.ResponseWriter, req *http.Request) {
 	f, err := os.Open(path)
 
 	if err == nil {
+		log.Printf("Serving asset: %s", path)
+
 		defer f.Close()
 		w.Header().Add("Content Type", contentType)
 
 		br := bufio.NewReader(f)
 		br.WriteTo(w)
 	} else {
+		log.Printf("Missing asset: %s", path)
+
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte(http.StatusText(http.StatusNotFound)))
 	}

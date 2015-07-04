@@ -1,16 +1,16 @@
-<div class="row category {{if eq .IsOrientRight true}}orient-right{{else}}orient-left{{end}}">
+<div class="category {{if eq .IsOrientRight true}}orient-right{{else}}orient-left{{end}}">
   <a href="/products">
     {{if eq .IsOrientRight false}}
-      <div class="columns small-4"
+      <div class=""
         <img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />
       </div>
     {{end}}
-    <div class="columns small-8">
+    <div class="">
       <h2>{{.Title}}</h2>
       <p>{{.Description}}</p>
     </div>
     {{if eq .IsOrientRight true}}
-      <div class="columns small-4"
+      <div class=""
         <img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />
       </div>
     {{end}}
