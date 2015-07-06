@@ -1,5 +1,5 @@
 <div class="category {{if eq .IsOrientRight true}}orient-right{{else}}orient-left{{end}}">
-<a href="/products">
+<a href="/categories/{{.Id}}">
   {{if eq .IsOrientRight false}}
   <div class="">
     <img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />

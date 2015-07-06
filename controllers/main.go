@@ -7,45 +7,31 @@ import (
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 func Register(templates *template.Template) {
-	/*
-		http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		requestedFile := req.URL.Path[1:]
-		template := templates.Lookup(requestedFile + ".html")
 
-		log.Printf("Requesting '%s'", requestedFile)
-
-		var context interface{} = nil
-
-		switch requestedFile {
-		case "home":
-		context = viewmodels.GetHome()
-		case "categories":
-		context = viewmodels.GetCategories()
-		case "products":
-		context = viewmodels.GetProducts()
-		case "product":
-		context = viewmodels.GetProduct()
-		}
-
-		if template != nil {
-		template.Execute(w, context)
-		} else {
-		w.WriteHeader(http.StatusNotFound)
-		w.Write([]byte(http.StatusText(http.StatusNotFound)))
-		}
-		})
-	*/
+	router := mux.NewRouter()
 
 	hc := new(homeController)
 	hc.template = templates.Lookup("home.html")
-	http.HandleFunc("/home", hc.get)
+	router.HandleFunc("/home", hc.get)
 
 	cc := new(categoriesController)
 	cc.template = templates.Lookup("categories.html")
-	http.HandleFunc("/categories", cc.get)
+	router.HandleFunc("/categories", cc.get)
+
+	categoryController := new(categoryController)
+	categoryController.template = templates.Lookup("products.html")
+	router.HandleFunc("/categories/{id}", categoryController.get)
+
+	productController := new(productController)
+	productController.template = templates.Lookup("product.html")
+	router.HandleFunc("/product/{id}", productController.get)
+
+	http.Handle("/", router)
 
 	http.HandleFunc("/img/", serveResource)
 	http.HandleFunc("/css/", serveResource)

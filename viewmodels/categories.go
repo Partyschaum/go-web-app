@@ -6,6 +6,7 @@ type Categories struct {
 }
 
 type Category struct {
+	Id            int
 	ImageUrl      string
 	Title         string
 	Description   string
@@ -21,6 +22,7 @@ func GetCategories() Categories {
 	}
 
 	juiceCategory := Category{
+		Id:            1,
 		ImageUrl:      "lemon.png",
 		Title:         "Juices and Mixes",
 		Description:   "Leckerer Limonennektar",
@@ -28,6 +30,7 @@ func GetCategories() Categories {
 	}
 
 	supplyCategory := Category{
+		Id:            2,
 		ImageUrl:      "kiwi.png",
 		Title:         "Cups, Straws, and Other Supplies",
 		Description:   "Wichtiges Zeug",
@@ -35,6 +38,7 @@ func GetCategories() Categories {
 	}
 
 	advertiseCategory := Category{
+		Id:            3,
 		ImageUrl:      "pineapple.png",
 		Title:         "Signs and Advertising",
 		Description:   "Werbung and stuff",
