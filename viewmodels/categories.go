@@ -20,36 +20,5 @@ func GetCategories() Categories {
 			Active: "shop",
 		},
 	}
-
-	juiceCategory := Category{
-		Id:            1,
-		ImageUrl:      "lemon.png",
-		Title:         "Juices and Mixes",
-		Description:   "Leckerer Limonennektar",
-		IsOrientRight: false,
-	}
-
-	supplyCategory := Category{
-		Id:            2,
-		ImageUrl:      "kiwi.png",
-		Title:         "Cups, Straws, and Other Supplies",
-		Description:   "Wichtiges Zeug",
-		IsOrientRight: true,
-	}
-
-	advertiseCategory := Category{
-		Id:            3,
-		ImageUrl:      "pineapple.png",
-		Title:         "Signs and Advertising",
-		Description:   "Werbung and stuff",
-		IsOrientRight: false,
-	}
-
-	categories.Categories = []Category{
-		juiceCategory,
-		supplyCategory,
-		advertiseCategory,
-	}
-
 	return categories
 }
