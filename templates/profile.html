@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  {{template "_head.html" .Title}}
+  <body>
+    {{template "_header.html" .Active}}
+    <h1>profile</h1>
+    <form action="/profile" method="POST">
+      <div>
+        <h3>Contact Information</h3>
+      </div>
+      <div>
+        <div>First Name</div>
+        <div><input type="text" name="firstName" value="{{.User.FirstName}}"></div>
+      </div>
+      <div>
+        <div>Last Name</div>
+        <div><input type="text" name="lastName" value="{{.User.LastName}}"></div>
+      </div>
+      <div>
+        <div>Email Address</div>
+        <div><input type="text" name="email" value="{{.User.Email}}"></div>
+      </div>
+      <div>
+        <h3>Stand Information</h3>
+      </div>
+      <div>
+        <div>Address</div>
+        <div><input type="text" name="standAddress" value="{{.User.Stand.Address}}"></div>
+      </div>
+      <div>
+        <div>City</div>
+        <div><input type="text" name="standCity" value="{{.User.Stand.City}}"></div>
+      </div>
+      <div>
+        <div>State</div>
+        <div><input type="text" name="standState" value="{{.User.Stand.State}}"></div>
+      </div>
+      <div>
+        <div>Zip Code</div>
+        <div><input type="text" name="standZip" value="{{.User.Stand.Zip}}"></div>
+      </div>
+      <div>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+
+    {{template "_footer.html"}}
+  </body>
+</html>
+
