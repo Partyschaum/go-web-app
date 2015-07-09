@@ -12,3 +12,17 @@ func GetHome() Home {
 		},
 	}
 }
+
+type Login struct {
+	Base
+}
+
+func GetLogin() Login {
+	result := Login{
+		Base: Base{
+			Title: "Lemonade Stand Society - Login",
+		},
+	}
+
+	return result
+}
